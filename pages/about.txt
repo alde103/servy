@@ -1,0 +1,1 @@
+"abriendo un .txt"
