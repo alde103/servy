@@ -72,4 +72,18 @@ defmodule ServyTest do
     assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 18\n\n\"abriendo un .txt\"\n"
   end
 
+  test "Prueba7" do
+    request = """
+    POST /bears HTTP/1.1
+    Host: example.com
+    User-Agent: ExampleBrowser/1.0
+    Accept:*/*
+    Content-Type: application/x-www-form-urrlencoded
+    Content-Length: 21
+
+    name=Baloo&type=Brown
+    """
+    assert Servy.Handler.handle(request) == "HTTP/1.1 201 Created\nContent-Type: text/html\nContent-Length: 31\n\nCreate a Brown bear named Baloo\n"
+  end
+
 end
