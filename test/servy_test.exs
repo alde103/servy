@@ -97,7 +97,7 @@ defmodule ServyTest do
 
     name=Baloo&type=Brown
     """
-    assert Servy.Handler.handle(request) == "HTTP/1.1 201 Created\nContent-Type: text/html\nContent-Length: 21\n\nCreate a  bear named \n"
+    assert Servy.Handler.handle(request) == "HTTP/1.1 201 Created\nContent-Type: text/html\nContent-Length: 41\n\nCreate a bear with no name has been added\n"
   end
 
 end
