@@ -25,7 +25,7 @@ defmodule ServyTest do
     Accept: */*
 
     """
-    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 85\n\n<ul><li>Brutus - Grizzly</li><li>Kenai - Grizzly</li><li>Scarface - Grizzly</li></ul>\n"
+    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 338\n\n<h1>All The Bears!</h1>\n<ul>\n    \n    <li>Brutus - Grizzly</li> \n    <li>Iceman - Polar</li> \n    <li>Kenai - Grizzly</li> \n    <li>Paddington - Brown</li> \n    <li>Roscoe - Panda</li> \n    <li>Rosie - Black</li> \n    <li>Scarface - Grizzly</li> \n    <li>Smokey - Black</li> \n    <li>Snow - Polar</li> \n    <li>Teddy - Brown</li> \n</ul>\n\n\n"
   end
 
   test "Prueba3" do
@@ -47,7 +47,8 @@ defmodule ServyTest do
     Accept: */*
 
     """
-    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 23\n\n<h1>Bear 1: Teddy </h1>\n"
+    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 66\n\n<h1>Show Bear</h1>\n<p>\nIs  hibernating? <strong>true</strong>\n</p>\n"
+
   end
 
   test "Prueba5" do
