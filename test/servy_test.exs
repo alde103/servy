@@ -25,7 +25,7 @@ defmodule ServyTest do
     Accept: */*
 
     """
-    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 25\n\nTeddy, Smokey, Paddington\n"
+    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 85\n\n<ul><li>Brutus - Grizzly</li><li>Kenai - Grizzly</li><li>Scarface - Grizzly</li></ul>\n"
   end
 
   test "Prueba3" do
@@ -47,7 +47,7 @@ defmodule ServyTest do
     Accept: */*
 
     """
-    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 6\n\nBear 1\n"
+    assert Servy.Handler.handle(request) == "HTTP/1.1 200 OK\nContent-Type: text/html\nContent-Length: 23\n\n<h1>Bear 1: Teddy </h1>\n"
   end
 
   test "Prueba5" do
