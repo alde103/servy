@@ -4,6 +4,7 @@ defmodule Servy.Conv do
     path: "",
     resp_body: "",
     status: nil,
+    resp_content_type: %{modo: " text/html"},
     params: %{},
     headers: %{}
   ]
