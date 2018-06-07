@@ -3,6 +3,7 @@ defmodule Servy.Handler do
   import Servy.Parse, only: [parse: 1]
   alias Servy.BearController
   alias Servy.Conv
+  alias Servy.VideoCam
   @pages_path Path.expand("../../pages", __DIR__)
 
   def handle(request) do
@@ -15,20 +16,18 @@ defmodule Servy.Handler do
     |> format_response
   end
 
-  def route(%Conv{ method: "GET", path: "/snapshots" } = conv) do
-    parent = self() # the request-handling process
+  def route(%Conv{ method: "GET", path: "/sensors" } = conv) do
+    task = Task.async(fn -> Servy.Tracker.get_location("bigfoot") end)
 
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-1")}) end)
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-2")}) end)
-    spawn(fn -> send(parent, {:result, VideoCam.get_snapshot("cam-3")}) end)
+    snapshots =
+      ["cam-1", "cam-2", "cam-3"]
+      |> Enum.map(&Task.async(fn -> VideoCam.get_snapshot(&1) end))
+      |> Enum.map(&Task.await/1)
 
-    snapshot1 = receive do {:result, filename} -> filename end
-    snapshot2 = receive do {:result, filename} -> filename end
-    snapshot3 = receive do {:result, filename} -> filename end
 
-    snapshots = [snapshot1, snapshot2, snapshot3]
+    where_is_bigfoot = Task.await(task)
 
-    %{ conv | status: 200, resp_body: inspect snapshots}
+    %{ conv | status: 200, resp_body: inspect {snapshots, where_is_bigfoot} }
   end
 
   def route(%Conv{ method: "GET", path: "/kaboom" } = conv) do
