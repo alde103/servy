@@ -7,8 +7,9 @@ defmodule Servy.SensorServer do
 
   # Client Interface
 
-  def start do
-    GenServer.start(__MODULE__, %{}, name: @name)
+  def start_link(interval) do
+    IO.puts("recibi #{interval}")
+    GenServer.start_link(__MODULE__, %{}, name: @name)
   end
 
   def get_sensor_data do
