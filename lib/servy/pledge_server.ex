@@ -83,16 +83,21 @@ defmodule Servy.PledgeServer do
 
 end
 
-  alias Servy.PledgeServer
+#alias Servy.PledgeServer
 
  # {:error, {:already_started, pid}} = PledgeServer.start()
-  {:ok, pid} = PledgeServer.start()
-  send pid, {:stop, "hammertime"}
+  # x = PledgeServer.start()
+  # pid = case x do
+  #   {:ok, pid}->  pid
+  #   {:error, {:already_started, pid}} -> pid
+  # end
 
-  PledgeServer.set_cache_size(4)
+  # send pid, {:stop, "hammertime"}
 
-  IO.inspect(PledgeServer.create_pledge("alde1", 10))
+  # PledgeServer.set_cache_size(4)
 
-  IO.inspect PledgeServer.recent_pledges()
+  # IO.inspect(PledgeServer.create_pledge("alde1", 10))
 
-  IO.inspect PledgeServer.total_pledged()
+  # IO.inspect PledgeServer.recent_pledges()
+
+  # IO.inspect PledgeServer.total_pledged()
